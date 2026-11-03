@@ -1,11 +1,23 @@
-"use client";
+'use client';
 
-import {ThemeProvider as NextThemesProvider} from "next-themes";
+import * as React from 'react';
+import { ThemeProvider as NextThemesProvider } from 'next-themes';
 
-export default function ThemeProvider({children}: {children: React.ReactNode}) {
+export default function ThemeProvider({ children }: { children: React.ReactNode }) {
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
-    <NextThemesProvider enableSystem attribute="class" defaultTheme="system">
-      {children}
+    <NextThemesProvider 
+      attribute="class" 
+      defaultTheme="system" 
+      enableSystem
+      disableTransitionOnChange
+    >
+      {mounted ? children : <div style={{ visibility: 'hidden' }}>{children}</div>}
     </NextThemesProvider>
   );
 }
