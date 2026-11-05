@@ -84,13 +84,33 @@ async function RootLayout({children}: {children: React.ReactNode}) {
                 </div>
               </div>
             </header>
+
             <main className="px-4">
               <CartProvider>{children}</CartProvider>
             </main>
-            <footer className="px-4">
-              {/* Inicio de copyright - Cambiar el contenido de los mismos viola el contenido de los terminos de licencia */}
-              <p className="sm:text-md border-t py-4 text-center text-sm text-muted-foreground">
-                Hecho con <ThemeToggle /> y Next.js, por{" "}
+
+            <footer className="mt-8 px-4">
+              {/* Información de derechos y navegación */}
+              <div className="flex flex-col items-center justify-between gap-4 py-4 sm:flex-row text-sm text-muted-foreground border-t">
+                <p>© 2026 CAUSAY - Comida Saludable. Todos los derechos reservados.</p>
+                
+                <div className="flex items-center gap-6">
+                  <div className="flex gap-4">
+                    <a href="/nosotros" className="hover:underline">Sobre Nosotros</a>
+                    <a href="/contacto" className="hover:underline">Contacto</a>
+                  </div>
+                  
+                  {/* Interruptor visual de tema */}
+                  <div className="flex items-center gap-2 rounded-full border px-3 py-1 bg-muted/30">
+                    <span className="text-xs font-medium">Tema:</span>
+                    <ThemeToggle />
+                  </div>
+                </div>
+              </div>
+
+              {/* Crédito original (mantenido conforme a la licencia del repositorio) */}
+              <p className="sm:text-md border-t py-4 text-center text-xs text-muted-foreground">
+                Hecho con Next.js, por{" "}
                 <a
                   className="underline"
                   href="https://twitter.com/goncy"
@@ -101,7 +121,6 @@ async function RootLayout({children}: {children: React.ReactNode}) {
                 </a>
                 .
               </p>
-              {/* Fin de copyright */}
             </footer>
           </div>
         </ThemeProvider>
