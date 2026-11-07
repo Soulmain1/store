@@ -7,7 +7,9 @@ export async function fetchCsv<T>(url: string | undefined, source: string): Prom
     throw new Error(`${source}: missing CSV URL`);
   }
 
-  const response = await fetch(url);
+  const response = await fetch(url, {
+    next: { revalidate: 0 } // Esto desactiva el caché y busca los datos frescos de Google Sheets siempre
+  });
 
   if (!response.ok) {
     throw new Error(`${source}: request failed with status ${String(response.status)}`);
