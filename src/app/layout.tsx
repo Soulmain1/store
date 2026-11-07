@@ -1,4 +1,3 @@
-import { connection } from "next/server";
 import type { Metadata } from "next";
 
 import api from "~/store/api";
@@ -23,8 +22,7 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-async function RootLayout({children}: {children: React.ReactNode}) {
-  await connection(); // <--- Le indica a Next.js 16 que este layout es dinámico por request
+async function RootLayout({ children }: { children: React.ReactNode }) {
   const store = await api.fetch();
 
   return (

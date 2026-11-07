@@ -7,8 +7,7 @@ export async function fetchCsv<T>(url: string | undefined, source: string): Prom
     throw new Error(`${source}: missing CSV URL`);
   }
 
-const response = await fetch(url, {
-    cache: 'no-store',
+  const response = await fetch(url, {
     next: { revalidate: 0 },
   });
 
