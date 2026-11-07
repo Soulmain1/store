@@ -8,7 +8,7 @@ export async function fetchCsv<T>(url: string | undefined, source: string): Prom
   }
 
   const response = await fetch(url, {
-    next: { revalidate: 0 } // Esto desactiva el caché y busca los datos frescos de Google Sheets siempre
+    next: { revalidate: 0 } 
   });
 
   if (!response.ok) {
