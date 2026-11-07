@@ -19,13 +19,13 @@ export async function generateMetadata(): Promise<Metadata> {
       default: store.title,
     },
     description: store.subtitle,
-    icons: {
+   icons: {
       icon: [
-        { url: "/favicon.ico" },
-        { url: "/favicon.png", type: "image/png" },
+        { url: "/favicon.ico?v=2" },
+        { url: "/favicon.png?v=2", type: "image/png" },
       ],
-      shortcut: "/favicon.ico",
-      apple: "/favicon.png",
+      shortcut: "/favicon.ico?v=2",
+      apple: "/favicon.png?v=2",
     },
   };
 }
