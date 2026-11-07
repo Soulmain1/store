@@ -1,19 +1,13 @@
-import type {Metadata} from "next";
+import type { Metadata } from "next";
 
 import api from "~/product/api";
 
 import Drawer from "./drawer";
 
-export async function generateStaticParams() {
-  const products = await api.list();
-
-  return [{product: []}, ...products.map((product) => ({product: [product.id]}))];
-}
-
 export async function generateMetadata({
   params,
 }: PageProps<"/[[...product]]">): Promise<Metadata | undefined> {
-  const {product: segments} = await params;
+  const { product: segments } = await params;
 
   if (!segments) return;
 
@@ -25,8 +19,8 @@ export async function generateMetadata({
   };
 }
 
-export default async function Page({params}: PageProps<"/[[...product]]">) {
-  const {product: segments} = await params;
+export default async function Page({ params }: PageProps<"/[[...product]]">) {
+  const { product: segments } = await params;
 
   if (!segments) return null;
 
