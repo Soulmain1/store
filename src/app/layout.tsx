@@ -113,19 +113,6 @@ async function RootLayout({ children }: { children: React.ReactNode }) {
                   </div>
                 </div>
               </div>
-
-              <p className="sm:text-md border-t py-4 text-center text-xs text-muted-foreground">
-                Hecho con Next.js, por{" "}
-                <a
-                  className="underline"
-                  href="https://twitter.com/goncy"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  goncy
-                </a>
-                .
-              </p>
             </footer>
           </div>
         </ThemeProvider>
