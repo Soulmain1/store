@@ -1,6 +1,5 @@
-export const dynamic = 'force-dynamic';
-export const revalidate = 0;
-import type {Metadata} from "next";
+import { connection } from "next/server";
+import type { Metadata } from "next";
 
 import api from "~/store/api";
 import CartProvider from "~/cart/context";
@@ -25,6 +24,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 async function RootLayout({children}: {children: React.ReactNode}) {
+  await connection(); // <--- Le indica a Next.js 16 que este layout es dinámico por request
   const store = await api.fetch();
 
   return (
@@ -92,7 +92,6 @@ async function RootLayout({children}: {children: React.ReactNode}) {
             </main>
 
             <footer className="mt-8 px-4">
-              {/* Información de derechos y navegación */}
               <div className="flex flex-col items-center justify-between gap-4 py-4 sm:flex-row text-sm text-muted-foreground border-t">
                 <p>© 2026 CAUSAY - Comida Saludable. Todos los derechos reservados.</p>
                 
@@ -102,7 +101,6 @@ async function RootLayout({children}: {children: React.ReactNode}) {
                     <a href="/contacto" className="hover:underline">Contacto</a>
                   </div>
                   
-                  {/* Interruptor visual de tema */}
                   <div className="flex items-center gap-2 rounded-full border px-3 py-1 bg-muted/30">
                     <span className="text-xs font-medium">Tema:</span>
                     <ThemeToggle />
@@ -110,7 +108,6 @@ async function RootLayout({children}: {children: React.ReactNode}) {
                 </div>
               </div>
 
-              {/* Crédito original (mantenido conforme a la licencia del repositorio) */}
               <p className="sm:text-md border-t py-4 text-center text-xs text-muted-foreground">
                 Hecho con Next.js, por{" "}
                 <a
