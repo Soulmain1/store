@@ -28,8 +28,12 @@ export async function generateMetadata({
 async function ProductContent({ params }: PageProps<"/[[...product]]">) {
   const { product: segments } = await params;
 
-  if (!segments) return null;
+  // Si no hay segmentos (el usuario está en la página principal), no renderizamos nada extra aquí
+  if (!segments || segments.length === 0) {
+    return null;
+  }
 
+  // Si hay un segmento (el usuario abrió un producto específico)
   const product = await api.fetch(segments[0]);
 
   return <Drawer product={product} />;

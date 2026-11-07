@@ -7,40 +7,104 @@ import {SearchIcon, X, Table, StretchHorizontal, ChevronDown} from "lucide-react
 import Link from "next/link";
 
 import ProductCard from "~/product/components/ProductCard";
+import Carousel from "@/components/Carousel";
 
 import {cn} from "@/lib/utils";
 import {Input} from "@/components/ui/input";
 import {Toggle} from "@/components/ui/toggle";
 
+const storeBanners = [
+  {
+    image: "https://i.imgur.com/nGtaNvA.jpeg",
+    alt: "Platos y Menú Saludable",
+    badge: "Destacado",
+    title: "Opciones Frescas y Saludables",
+    description: "Conoce nuestra variedad de platos preparados día a día con ingredientes naturales.",
+  },
+  {
+    image: "https://i.imgur.com/miXTv3J.jpeg",
+    alt: "Especialidades de la Casa",
+    badge: "Recomendado",
+    title: "Sabor Nutritivo",
+    description: "Disfruta de combinaciones ideales para mantener tus objetivos de bienestar.",
+  },
+  {
+    image: "https://i.imgur.com/LeGn7B1.jpeg",
+    alt: "Ingredientes Selección",
+    badge: "Calidad Premium",
+    title: "Ingredientes Seleccionados",
+    description: "Frescura garantizada en cada una de nuestras recetas.",
+  },
+  {
+    image: "https://i.imgur.com/0jOrNfk.jpeg",
+    alt: "Ensaladas y Bowls",
+    badge: "Especial",
+    title: "Bowls & Ensaladas",
+    description: "Arma tu combinación favorita cargada de nutrientes.",
+  },
+  {
+    image: "https://i.imgur.com/4yFLROq.jpeg",
+    alt: "Promociones Semanales",
+    badge: "Imperdible",
+    title: "Promociones de la Semana",
+    description: "Aprovecha los descuentos en nuestros combos saludables.",
+  },
+  {
+    image: "https://i.imgur.com/0XhTZ2h.jpeg",
+    alt: "Menú Equilibrado",
+    badge: "Nuevo",
+    title: "Variedad para Cada Día",
+    description: "Platos balanceados para tu almuerzo o cena.",
+  },
+  {
+    image: "https://i.imgur.com/6KU98LX.jpeg",
+    alt: "Alimentación Consciente",
+    badge: "Saludable",
+    title: "Alimentación Consciente",
+    description: "Cuidamos cada detalle de tu nutrición sin perder el buen sabor.",
+  },
+  {
+    image: "https://i.imgur.com/gssiKp3.jpeg",
+    alt: "Platos Especiales",
+    badge: "Favorito",
+    title: "Los Más Pedidos",
+    description: "Descubre cuáles son los platos preferidos por nuestros clientes.",
+  },
+  {
+    image: "https://i.imgur.com/XaAoaTZ.jpeg",
+    alt: "CAUSAY Comida Saludable",
+    badge: "CAUSAY",
+    title: "Vive una Experiencia Saludable",
+    description: "Haz tu pedido hoy y disfruta de la mejor comida rápida y sana.",
+  },
+];
+
 function Listing({products}: {products: Product[]}) {
   const [query, setQuery] = useState<string>("");
   const [layout, setLayout] = useState<"list" | "grid">(() =>
-    products.length > 30 ? "list" : "grid",
+    (products?.length || 0) > 30 ? "list" : "grid",
   );
   const [selectedCategory, setSelectedCategory] = useState<Product["category"] | null>(null);
-  const categories = useMemo<[Product["category"], Product[]][]>(() => {
-    let draft = products;
 
-    // Filter products by search query
+  const categories = useMemo<[Product["category"], Product[]][]>(() => {
+    let draft = products || [];
+
     if (query) {
       draft = draft.filter(({title, description}) =>
         (title.toLowerCase() + description.toLowerCase()).includes(query.toLowerCase()),
       );
     }
 
-    // Group products by category
-    const groups = draft.reduce<Map<Product["category"], Product[]>>((map, product) => {
-      if (!map.has(product.category)) {
-        map.set(product.category, []);
+    const groups: Record<string, Product[]> = {};
+    for (const product of draft) {
+      const category = product.category || "General";
+      if (!groups[category]) {
+        groups[category] = [];
       }
+      groups[category].push(product);
+    }
 
-      map.set(product.category, map.get(product.category)!.concat(product));
-
-      return map;
-    }, new Map());
-
-    // Return them in a tuple of [category, products]
-    return Array.from(groups.entries());
+    return Object.entries(groups);
   }, [query, products]);
 
   function handleSelectCategory(category: Product["category"]) {
@@ -48,10 +112,11 @@ function Listing({products}: {products: Product[]}) {
       currentSelectedCategory === category ? null : category,
     );
 
-    // Scroll to the category
     queueMicrotask(() => {
-      const categoryElement = document.getElementById(category)!;
-      const filtersElement = document.getElementById("filters")!;
+      const categoryElement = document.getElementById(category);
+      const filtersElement = document.getElementById("filters");
+      if (!categoryElement || !filtersElement) return;
+
       const offset = filtersElement.getBoundingClientRect().height;
       const bodyRect = document.body.getBoundingClientRect().top;
       const elementRect = categoryElement.getBoundingClientRect().top;
@@ -65,8 +130,11 @@ function Listing({products}: {products: Product[]}) {
   }
 
   return (
-    <div className="flex flex-col">
-      {/* Filters */}
+    <div className="flex flex-col gap-6">
+      <div className="pt-2">
+        <Carousel slides={storeBanners} />
+      </div>
+
       <div
         className="sticky top-0 z-10 flex items-center justify-between gap-4 bg-background py-4"
         id="filters"
@@ -115,7 +183,7 @@ function Listing({products}: {products: Product[]}) {
           </Toggle>
         </div>
       </div>
-      {/* Grid of products by category */}
+
       <div className="flex flex-col">
         {categories.length ? (
           categories.map(([category, categoryProducts]) => (
