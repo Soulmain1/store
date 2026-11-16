@@ -10,20 +10,28 @@ export default function NosotrosPage() {
   return (
     <div className="mx-auto flex max-w-3xl flex-col gap-8 py-6">
       {/* Navegación superior */}
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col items-center text-center gap-3">
         <Link
           href="/"
-          className="mb-2 w-fit text-sm text-muted-foreground hover:underline"
+          className="mb-1 self-start text-sm text-muted-foreground hover:text-brand-600 hover:underline"
         >
           ← Volver al menú
         </Link>
-        <h1 className="text-3xl font-bold sm:text-4xl">Sobre Nosotros</h1>
-        <p className="text-lg text-muted-foreground">
-          Somos Flavio y Josefina. Hace más de 20 años que elegimos caminar juntos.
+
+        <span className="rounded-full bg-brand-600/10 px-3 py-0.5 text-xs font-semibold tracking-wide text-brand-700 dark:text-brand-400 uppercase">
+          Nuestra Historia
+        </span>
+
+        <h1 className="text-2xl font-bold sm:text-3xl">
+          Sobre Nosotros
+        </h1>
+
+        <p className="max-w-lg text-sm text-muted-foreground sm:text-base leading-relaxed">
+          Somos <span className="font-semibold text-foreground">Flavio y Josefina</span>. Hace 20 años que elegimos caminar juntos. 
         </p>
 
         {/* Imagen completa de Flavio, Josefina y la torta */}
-        <div className="mt-4 overflow-hidden rounded-xl border bg-muted/20">
+        <div className="mt-2 w-full overflow-hidden rounded-2xl border bg-muted/20 shadow-sm">
           <img
             src="https://i.imgur.com/8pNGrqN.jpeg"
             alt="Flavio y Josefina - Causay Comida Saludable"
@@ -61,10 +69,10 @@ export default function NosotrosPage() {
       {/* Frase / Cierre */}
       <section className="rounded-lg border bg-muted/20 p-6 flex flex-col gap-3">
         <p className="italic text-muted-foreground">
-          &ldquo;Hoy miramos todo lo recorrido y entendemos que quizás la vida no nos llevó exactamente hacia donde alguna vez imaginamos, nos llevó hacia algo que no sabíamos que necesitábamos. Y hoy queremos seguir soñando, no con los sueños de antes, sino con los que todavía estamos descubriendo. Juntos, como hace 20 años.&rdquo; 
+          &ldquo;Hoy miramos todo lo recorrido y entendemos que quizás la vida no nos llevó exactamente hacia donde alguna vez imaginamos, nos llevó hacia algo que no sabíamos que necesitábamos. Y hoy queremos seguir soñando, no con los sueños de antes, sino con los que todavía estamos descubriendo. Juntos, como hace 20 años.&rdquo; ❤️
         </p>
         <p className="font-medium text-sm">
-          Causay es una parte de nuestra vida, que ahora también puede ser parte de la tuya.
+          Causay es una parte de nuestra vida, que ahora también puede ser parte de la tuya. 
         </p>
       </section>
 
