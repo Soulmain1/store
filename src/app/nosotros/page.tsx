@@ -13,9 +13,10 @@ export default function NosotrosPage() {
       <div className="flex flex-col items-center text-center gap-3">
         <Link
           href="/"
-          className="mb-1 self-start text-sm text-muted-foreground hover:text-brand-600 hover:underline"
+          className="mb-2 inline-flex items-center gap-1.5 self-start rounded-full border bg-muted/40 px-4 py-1.5 text-sm font-medium transition hover:bg-muted"
         >
-          ← Volver al menú
+          <span>←</span>
+          <span>Volver al menú</span>
         </Link>
 
         <span className="rounded-full bg-brand-600/10 px-3 py-0.5 text-xs font-semibold tracking-wide text-brand-700 dark:text-brand-400 uppercase">
