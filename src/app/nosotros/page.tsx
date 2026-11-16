@@ -56,7 +56,7 @@ export default function NosotrosPage() {
           En todo este tiempo soñamos, cambiamos, crecimos y aprendimos que crecer también significa permitirnos cambiar. Nuestros sueños fueron cambiando con el tiempo, y entendimos que a veces soñamos a través de la mirada del otro, imaginando lo que creemos que el otro quiere, sin detenernos a preguntarnos qué queremos realmente nosotros.
         </p>
         <p>
-          Y ahí apareció <strong>Causay</strong>. Hace 4 años nació este emprendimiento que, sin saberlo, iba a transformar nuestras vidas.
+          Y ahí apareció <strong>Causay</strong>. Hace más de 4 años nació este emprendimiento que, sin saberlo, iba a transformar nuestras vidas.
         </p>
         <p>
           Causay nos enseñó a no estancarnos. A entender que cambiar de rumbo no significa abandonar un sueño, sino que los sueños también pueden modificarse, crecer, transformarse y encontrar nuevas formas de hacerse realidad. <strong>Causay significa vida</strong>, y estamos convencidos de que eso fue exactamente lo que nos dio: vida.
@@ -69,7 +69,7 @@ export default function NosotrosPage() {
       {/* Frase / Cierre */}
       <section className="rounded-lg border bg-muted/20 p-6 flex flex-col gap-3">
         <p className="italic text-muted-foreground">
-          &ldquo;Hoy miramos todo lo recorrido y entendemos que quizás la vida no nos llevó exactamente hacia donde alguna vez imaginamos, nos llevó hacia algo que no sabíamos que necesitábamos. Y hoy queremos seguir soñando, no con los sueños de antes, sino con los que todavía estamos descubriendo. Juntos, como hace 20 años.&rdquo; ❤️
+          &ldquo;Hoy miramos todo lo recorrido y entendemos que quizás la vida no nos llevó exactamente hacia donde alguna vez imaginamos, nos llevó hacia algo que no sabíamos que necesitábamos. Y hoy queremos seguir soñando, no con los sueños de antes, sino con los que todavía estamos descubriendo. Juntos, como hace más de 20 años.&rdquo; 
         </p>
         <p className="font-medium text-sm">
           Causay es una parte de nuestra vida, que ahora también puede ser parte de la tuya. 
