@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 import api from "~/store/api";
 import CartProvider from "~/cart/context";
@@ -19,7 +20,7 @@ export async function generateMetadata(): Promise<Metadata> {
       default: store.title,
     },
     description: store.subtitle,
-   icons: {
+    icons: {
       icon: [
         { url: "/favicon.ico?v=2" },
         { url: "/favicon.png?v=2", type: "image/png" },
@@ -38,8 +39,10 @@ async function RootLayout({ children }: { children: React.ReactNode }) {
       <head />
       <body className="font-sans antialiased">
         <ThemeProvider>
+          {/* Contenedor principal con ancho normal de PC */}
           <div className="m-auto max-w-7xl rounded-sm">
-            <header className="flex flex-col gap-4 p-4">
+            <header className="flex flex-col gap-6 p-4">
+              {/* Banner superior */}
               <img
                 alt={store.title}
                 className="h-32 w-full rounded-lg object-cover sm:h-64"
@@ -48,47 +51,61 @@ async function RootLayout({ children }: { children: React.ReactNode }) {
                 src={store.banner}
                 width={1248}
               />
-              <div className="flex flex-col items-center gap-2 sm:flex-row sm:items-start sm:gap-4">
-                <div className="-mt-20 rounded-full p-1 sm:-mt-12">
-                  <img
-                    alt={store.title}
-                    className="h-32 w-32 min-w-32 rounded-full border-8 border-background"
-                    height={128}
-                    src={store.logo}
-                    width={128}
-                  />
+
+              {/* Sección del perfil centrada */}
+              <div className="flex flex-col items-center gap-4 text-center">
+                <div className="-mt-20 rounded-full p-1 bg-background border-4 border-background sm:-mt-16">
+                  <Link href="/">
+                    <img
+                      alt={store.title}
+                      className="h-32 w-32 min-w-32 rounded-full object-cover"
+                      height={128}
+                      src={store.logo}
+                      width={128}
+                    />
+                  </Link>
                 </div>
-                <div className="flex flex-col items-center gap-4 text-center sm:items-start sm:gap-2 sm:text-left">
-                  <div className="flex flex-col gap-1">
+
+                <div className="flex flex-col gap-1">
+                  <Link href="/">
                     <p className="text-3xl font-bold sm:text-4xl">{store.title}</p>
-                    <p className="font-medium text-muted-foreground">{store.subtitle}</p>
-                  </div>
-                  <div className="flex gap-2">
-                    {Boolean(store.instagram) && (
-                      <a
-                        aria-label="Instagram"
-                        href={store.instagram}
-                        rel="noopener noreferrer"
-                        target="_blank"
-                      >
-                        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-600 text-white">
-                          <InstagramIcon />
-                        </div>
-                      </a>
-                    )}
-                    {Boolean(store.whatsapp) && (
-                      <a
-                        aria-label="Whatsapp"
-                        href={store.whatsapp}
-                        rel="noopener noreferrer"
-                        target="_blank"
-                      >
-                        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-600 text-white">
-                          <WhatsappIcon />
-                        </div>
-                      </a>
-                    )}
-                  </div>
+                  </Link>
+                  <p className="font-medium text-muted-foreground">{store.subtitle}</p>
+                </div>
+
+                {/* Botones de redes y Sobre Nosotros centrados */}
+                <div className="flex flex-wrap items-center justify-center gap-2">
+                  {Boolean(store.instagram) && (
+                    <a
+                      aria-label="Instagram"
+                      href={store.instagram}
+                      rel="noopener noreferrer"
+                      target="_blank"
+                    >
+                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-600 text-white transition hover:opacity-90">
+                        <InstagramIcon />
+                      </div>
+                    </a>
+                  )}
+                  {Boolean(store.whatsapp) && (
+                    <a
+                      aria-label="Whatsapp"
+                      href={store.whatsapp}
+                      rel="noopener noreferrer"
+                      target="_blank"
+                    >
+                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-600 text-white transition hover:opacity-90">
+                        <WhatsappIcon />
+                      </div>
+                    </a>
+                  )}
+
+                  <Link
+                    href="/nosotros"
+                    className="flex h-10 items-center rounded-full border bg-muted/40 px-4 text-sm font-medium transition hover:bg-muted"
+                  >
+                    Sobre Nosotros
+                  </Link>
                 </div>
               </div>
             </header>
@@ -97,20 +114,13 @@ async function RootLayout({ children }: { children: React.ReactNode }) {
               <CartProvider>{children}</CartProvider>
             </main>
 
-            <footer className="mt-8 px-4">
-              <div className="flex flex-col items-center justify-between gap-4 py-4 sm:flex-row text-sm text-muted-foreground border-t">
+            <footer className="mt-8 px-4 pb-6">
+              <div className="flex flex-col items-center justify-between gap-4 border-t py-4 text-sm text-muted-foreground sm:flex-row">
                 <p>© 2026 CAUSAY - Comida Saludable. Todos los derechos reservados.</p>
-                
-                <div className="flex items-center gap-6">
-                  <div className="flex gap-4">
-                    <a href="/nosotros" className="hover:underline">Sobre Nosotros</a>
-                    <a href="/contacto" className="hover:underline">Contacto</a>
-                  </div>
-                  
-                  <div className="flex items-center gap-2 rounded-full border px-3 py-1 bg-muted/30">
-                    <span className="text-xs font-medium">Tema:</span>
-                    <ThemeToggle />
-                  </div>
+
+                <div className="flex items-center gap-2 rounded-full border bg-muted/30 px-3 py-1">
+                  <span className="text-xs font-medium">Tema:</span>
+                  <ThemeToggle />
                 </div>
               </div>
             </footer>
