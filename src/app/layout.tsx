@@ -54,7 +54,7 @@ async function RootLayout({ children }: { children: React.ReactNode }) {
 
               {/* Sección del perfil centrada */}
               <div className="flex flex-col items-center gap-4 text-center">
-                <div className="-mt-20 rounded-full p-1 bg-background border-4 border-background sm:-mt-16">
+                <div className="-mt-20 rounded-full border-4 border-background bg-background p-1 sm:-mt-16">
                   <Link href="/">
                     <img
                       alt={store.title}
@@ -114,8 +114,69 @@ async function RootLayout({ children }: { children: React.ReactNode }) {
               <CartProvider>{children}</CartProvider>
             </main>
 
-            <footer className="mt-8 px-4 pb-6">
-              <div className="flex flex-col items-center justify-between gap-4 border-t py-4 text-sm text-muted-foreground sm:flex-row">
+            <footer className="mt-12 px-4 pb-6">
+              {/* Sección de Preguntas Frecuentes desplegables (acordeón exclusivo) */}
+              <div className="border-t pt-6 pb-6">
+                <h2 className="mb-4 text-center text-lg font-semibold sm:text-left">
+                  Preguntas Frecuentes
+                </h2>
+                <div className="grid items-start gap-3 sm:grid-cols-2">
+                  <details
+                    name="faq"
+                    className="group rounded-xl border bg-muted/20 p-4 text-sm transition hover:bg-muted/30"
+                  >
+                    <summary className="flex cursor-pointer list-none items-center justify-between font-medium">
+                      <span>¿Cómo hago mi pedido?</span>
+                      <span className="transition group-open:rotate-180">▾</span>
+                    </summary>
+                    <p className="mt-2 leading-relaxed text-muted-foreground">
+                      Agregá los platos que quieras al catálogo y tocá finalizar pedido. Se abrirá nuestro WhatsApp automáticamente con el detalle listo para confirmar.
+                    </p>
+                  </details>
+
+                  <details
+                    name="faq"
+                    className="group rounded-xl border bg-muted/20 p-4 text-sm transition hover:bg-muted/30"
+                  >
+                    <summary className="flex cursor-pointer list-none items-center justify-between font-medium">
+                      <span>¿Qué medios de pago aceptan?</span>
+                      <span className="transition group-open:rotate-180">▾</span>
+                    </summary>
+                    <p className="mt-2 leading-relaxed text-muted-foreground">
+                      Aceptamos transferencia bancaria, Mercado Pago y efectivo al recibir tu pedido.
+                    </p>
+                  </details>
+
+                  <details
+                    name="faq"
+                    className="group rounded-xl border bg-muted/20 p-4 text-sm transition hover:bg-muted/30"
+                  >
+                    <summary className="flex cursor-pointer list-none items-center justify-between font-medium">
+                      <span>¿Hacen envíos a domicilio?</span>
+                      <span className="transition group-open:rotate-180">▾</span>
+                    </summary>
+                    <p className="mt-2 leading-relaxed text-muted-foreground">
+                      Sí, realizamos envíos en San Miguel de Tucumán. Coordinamos la franja horaria de entrega apenas confirmás por WhatsApp.
+                    </p>
+                  </details>
+
+                  <details
+                    name="faq"
+                    className="group rounded-xl border bg-muted/20 p-4 text-sm transition hover:bg-muted/30"
+                  >
+                    <summary className="flex cursor-pointer list-none items-center justify-between font-medium">
+                      <span>¿Cómo se conservan los platos?</span>
+                      <span className="transition group-open:rotate-180">▾</span>
+                    </summary>
+                    <p className="mt-2 leading-relaxed text-muted-foreground">
+                      Nuestros productos son 100% naturales y de elaboración propia. Duran hasta 3-4 días en heladera y hasta 3 meses en el freezer.
+                    </p>
+                  </details>
+                </div>
+              </div>
+
+              {/* Barra inferior del Footer */}
+              <div className="flex flex-col items-center justify-between gap-4 border-t pt-6 text-sm text-muted-foreground sm:flex-row">
                 <p>© 2026 CAUSAY - Comida Saludable. Todos los derechos reservados.</p>
 
                 <div className="flex items-center gap-2 rounded-full border bg-muted/30 px-3 py-1">
