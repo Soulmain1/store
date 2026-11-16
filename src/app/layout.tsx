@@ -52,15 +52,15 @@ async function RootLayout({ children }: { children: React.ReactNode }) {
                 width={1248}
               />
 
-              {/* Sección del perfil centrada */}
+             {/* Sección del perfil centrada */}
               <div className="flex flex-col items-center gap-4 text-center">
                 <div className="-mt-20 rounded-full border-4 border-background bg-background p-1 sm:-mt-16">
                   <Link href="/">
                     <img
                       alt={store.title}
-                      className="h-32 w-32 min-w-32 rounded-full object-cover"
+                      className="h-32 w-32 min-w-32 rounded-full object-cover bg-white"
                       height={128}
-                      src={store.logo}
+                      src="/assets/avatar.png"
                       width={128}
                     />
                   </Link>
